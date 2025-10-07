@@ -1,0 +1,107 @@
+@startuml
+title Architecture du simulateur d'entretien - version claire et compacte
+
+' --- Options esthétiques ---
+skinparam linetype ortho
+skinparam shadowing false
+skinparam ArrowThickness 1
+skinparam ArrowColor #444444
+skinparam classFontSize 12
+skinparam classAttributeFontSize 11
+skinparam classFontColor #222222
+skinparam ArrowFontSize 11
+skinparam ArrowFontColor #333333
+skinparam ArrowFontStyle italic
+skinparam Padding 5
+skinparam RankSep 25
+skinparam NodeSep 20
+
+' --- UI ---
+package "ui" {
+  class ConsoleUI {
+    +startInterview()
+    +displayQuestion(q: Question)
+    +getUserResponse(): String
+    +displayFeedback(feedback: String)
+  }
+}
+
+' --- Agent ---
+package "agent" {
+  class InterviewAgent {
+    +startInterview(cv: CV, offer: JobOffer)
+    +generateQuestion(): Question
+    +processResponse(r: Response)
+  }
+
+  class Memory {
+    +getContext(): String
+  }
+
+  class FeedbackModule {
+    +analyzeResponse(r: Response): String
+  }
+}
+
+' --- API ---
+package "api" {
+  class OllamaClient {
+    +askModel(prompt: String): String
+  }
+}
+
+' --- Modèle ---
+package "model" {
+  class CV {
+    +fullName: String
+    +summary: String
+  }
+
+  class JobOffer {
+    +title: String
+    +description: String
+  }
+
+  class Question {
+    +text: String
+  }
+
+  class Response {
+    +answer: String
+    +timestamp: String
+  }
+
+  class Skill {
+    +name: String
+  }
+
+  class Requirement {
+    +name: String
+  }
+}
+
+' --- Utils ---
+package "utils" {
+  class FileLoader {
+    +loadCV(path: String): CV
+    +loadJobOffer(path: String): JobOffer
+  }
+}
+
+' --- Relations avec libellés rapprochés ---
+ConsoleUI --> InterviewAgent : contrôle
+ConsoleUI ..> FileLoader : charge fichiers
+InterviewAgent --> Memory : utilise
+InterviewAgent --> OllamaClient : envoie prompt à
+InterviewAgent --> FeedbackModule : demande analyse
+FeedbackModule --> OllamaClient : exploite
+Memory *-- CV : contient
+Memory *-- JobOffer : contient
+Memory *-- Response : stocke
+CV o-- Skill : possède
+JobOffer o-- Requirement : exige
+InterviewAgent --> Question : pose
+InterviewAgent --> Response : reçoit
+Response --> Question : répond à
+
+@enduml
