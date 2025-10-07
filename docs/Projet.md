@@ -1,6 +1,6 @@
 # Projet : IA de simuation d'entretien d'embauche.
 
-***Fonctionement :*** 
+***Fonctionement :***
 
 L'IA demande le CV et l'offre d'emploi et reproduit un scénario d'entretien d'embauche.
 
