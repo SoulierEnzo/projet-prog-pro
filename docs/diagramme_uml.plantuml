@@ -1,7 +1,6 @@
 @startuml
 title Architecture du simulateur d'entretien
 
-' --- Paramètres de lisibilité ---
 skinparam linetype ortho
 skinparam shadowing false
 skinparam ArrowThickness 1
@@ -74,7 +73,6 @@ package "Model" {
 
   class Response {
     +answer: String
-    +timestamp: String
   }
 }
 
@@ -89,7 +87,7 @@ FeedbackModule --> OllamaClient : exploite
 Memory *-- Response : stocke
 InterviewAgent --> Question : pose
 InterviewAgent --> Response : reçoit
-Response --> Question : répond à
+Response --> Question : "répond à"
 
 EvaluationAgent --> OllamaClient : utilise pour analyse sémantique
 EvaluationAgent --> Memory : consulte le contexte
