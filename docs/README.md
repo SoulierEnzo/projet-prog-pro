@@ -1,4 +1,4 @@
-# IA de simuation d'entretien d'embauche
+# Agent de simuation d'entretien d'embauche
 
 ## Equipe :
 | Prénom NOM    | Role                |
@@ -7,4 +7,4 @@
 | Clément SAURY | Responsable système |
 | Enzo SOULIER  | Développeur         |
 
-***Le projet est dans le fichier [Projet.md](Projet.md)***
+***La description du projet est dans le fichier [Projet.md](Projet.md)***
