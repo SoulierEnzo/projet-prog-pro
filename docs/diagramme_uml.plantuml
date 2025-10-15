@@ -1,7 +1,7 @@
 @startuml
-title Architecture du simulateur d'entretien - version claire et compacte
+title Architecture du simulateur d'entretien
 
-' --- Options esthétiques ---
+' --- Paramètres de lisibilité ---
 skinparam linetype ortho
 skinparam shadowing false
 skinparam ArrowThickness 1
@@ -12,12 +12,15 @@ skinparam classFontColor #222222
 skinparam ArrowFontSize 11
 skinparam ArrowFontColor #333333
 skinparam ArrowFontStyle italic
-skinparam Padding 5
-skinparam RankSep 25
-skinparam NodeSep 20
+skinparam Padding 10
+skinparam RankSep 60
+skinparam NodeSep 50
+skinparam packageStyle rectangle
 
-' --- UI ---
-package "ui" {
+' ============================================================
+'                       UI
+' ============================================================
+package "UI" {
   class ConsoleUI {
     +startInterview()
     +displayQuestion(q: Question)
@@ -26,42 +29,45 @@ package "ui" {
   }
 }
 
-' --- Agent ---
-package "agent" {
+' ============================================================
+'                       Agent
+' ============================================================
+package "Agent" {
   class InterviewAgent {
-    +startInterview(cv: CV, offer: JobOffer)
+    +startInterview(cv: String, offer: String)
     +generateQuestion(): Question
     +processResponse(r: Response)
   }
 
   class Memory {
+    +cvPath: String
+    +jobOfferPath: String
     +getContext(): String
   }
 
   class FeedbackModule {
     +analyzeResponse(r: Response): String
   }
+
+  class EvaluationAgent {
+    +evaluatePerformance(responses: List<Response>): String
+    +generateScoreReport(): String
+  }
 }
 
-' --- API ---
-package "api" {
+' ============================================================
+'                       API
+' ============================================================
+package "API" {
   class OllamaClient {
     +askModel(prompt: String): String
   }
 }
 
-' --- Modèle ---
-package "model" {
-  class CV {
-    +fullName: String
-    +summary: String
-  }
-
-  class JobOffer {
-    +title: String
-    +description: String
-  }
-
+' ============================================================
+'                       Model
+' ============================================================
+package "Model" {
   class Question {
     +text: String
   }
@@ -70,38 +76,24 @@ package "model" {
     +answer: String
     +timestamp: String
   }
-
-  class Skill {
-    +name: String
-  }
-
-  class Requirement {
-    +name: String
-  }
 }
 
-' --- Utils ---
-package "utils" {
-  class FileLoader {
-    +loadCV(path: String): CV
-    +loadJobOffer(path: String): JobOffer
-  }
-}
-
-' --- Relations avec libellés rapprochés ---
+' ============================================================
+'                       Relations
+' ============================================================
 ConsoleUI --> InterviewAgent : contrôle
-ConsoleUI ..> FileLoader : charge fichiers
-InterviewAgent --> Memory : utilise
-InterviewAgent --> OllamaClient : envoie prompt à
+InterviewAgent --> Memory : utilise / met à jour
 InterviewAgent --> FeedbackModule : demande analyse
+InterviewAgent --> OllamaClient : envoie prompt à
 FeedbackModule --> OllamaClient : exploite
-Memory *-- CV : contient
-Memory *-- JobOffer : contient
 Memory *-- Response : stocke
-CV o-- Skill : possède
-JobOffer o-- Requirement : exige
 InterviewAgent --> Question : pose
 InterviewAgent --> Response : reçoit
 Response --> Question : répond à
+
+EvaluationAgent --> OllamaClient : utilise pour analyse sémantique
+EvaluationAgent --> Memory : consulte le contexte
+EvaluationAgent --> Response : évalue les réponses
+ConsoleUI --> EvaluationAgent : affiche le score final
 
 @enduml
