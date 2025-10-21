@@ -9,18 +9,21 @@ public class Memory {
     private String cv;
     private String jobOffer;
 
-    private List <Response> responses;
+    private List<Response> responses;
 
 
     public String getContext() {
-        String context;
+        StringBuilder context;
 
-        context = "CV de l'utilisateur : " + cv;
-        context += "\n jobOffer de l'utilisateur : " + jobOffer;
-        for ( Response response : responses){
-            //TODO chainer sur les response pour lister les question deja posé.
+        context = new StringBuilder("CV de l'utilisateur : ").append(cv);
+        context.append("\njobOffer de l'utilisateur : ").append(jobOffer);
+        context.append("\nQuestions deja poses : ");
+
+        for (Response response : responses) {
+            context.append("\n").append(response.getQuestion());
         }
-        return null;
+
+        return context.toString();
     }
 
     public String getCv() {
@@ -37,5 +40,13 @@ public class Memory {
 
     public void setJobOffer(String jobOffer) {
         this.jobOffer = jobOffer;
+    }
+
+    public List<Response> getResponses() {
+        return responses;
+    }
+
+    public void setResponses(List<Response> responses) {
+        this.responses = responses;
     }
 }

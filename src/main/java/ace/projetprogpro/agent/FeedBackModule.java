@@ -1,7 +1,9 @@
 package ace.projetprogpro.agent;
 
+import ace.projetprogpro.model.Response;
+
 public class FeedBackModule {
 
-    public String analyzeResponse(Object r) { return ""; }
+    public String analyzeResponse(Response r) { return ""; }
 
 }

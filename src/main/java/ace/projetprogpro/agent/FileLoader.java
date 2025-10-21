@@ -38,6 +38,7 @@ public class FileLoader {
                 files[i] = file;
             }
         }
+        scanner.close();
 
         return files;
     }

@@ -21,7 +21,6 @@ skinparam packageStyle rectangle
 ' ============================================================
 package "UI" {
   class ConsoleUI {
-    +startInterview()
     +displayQuestion(q: Question)
     +getUserResponse(): String
     +displayFeedback(feedback: String)
