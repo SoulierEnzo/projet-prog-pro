@@ -33,14 +33,14 @@ package "UI" {
 ' ============================================================
 package "Agent" {
   class InterviewAgent {
-    +startInterview(cv: String, offer: String)
+    +startInterview()
     +generateQuestion(): Question
     +processResponse(r: Response)
   }
 
   class Memory {
-    +cvPath: String
-    +jobOfferPath: String
+    +cv: String
+    +jobOffer: String
     +getContext(): String
   }
 
@@ -51,6 +51,11 @@ package "Agent" {
   class EvaluationAgent {
     +evaluatePerformance(responses: List<Response>): String
     +generateScoreReport(): String
+  }
+
+  class FileLoader {
+    +getTwoFilesFromUser(): File[]
+    +encodeFileToBase64(file: File): String
   }
 }
 
@@ -73,6 +78,7 @@ package "Model" {
 
   class Response {
     +answer: String
+    +timestamp: String
   }
 }
 
@@ -88,8 +94,7 @@ Memory *-- Response : stocke
 InterviewAgent --> Question : pose
 InterviewAgent --> Response : reçoit
 Response --> Question : "répond à"
-
-EvaluationAgent --> OllamaClient : utilise pour analyse sémantique
+InterviewAgent --> FileLoader : récupère fichiers (Base64)
 EvaluationAgent --> Memory : consulte le contexte
 EvaluationAgent --> Response : évalue les réponses
 ConsoleUI --> EvaluationAgent : affiche le score final
