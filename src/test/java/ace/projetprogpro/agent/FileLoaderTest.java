@@ -1,16 +1,17 @@
 package ace.projetprogpro.agent;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Base64;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Base64;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class FileLoaderTest {
 
@@ -22,7 +23,7 @@ class FileLoaderTest {
     @BeforeEach
     void setup() throws IOException {
         tempFile = tempDir.resolve("testfile.txt").toFile();
-        try (FileWriter writer = new FileWriter(tempFile)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(tempFile.toPath(), StandardCharsets.UTF_8)) {
             writer.write("Bonjour IA !");
         }
     }
@@ -32,7 +33,7 @@ class FileLoaderTest {
     void testEncodeFileToBase64_NormalCase() throws IOException {
         String base64Encoded = FileLoader.encodeFileToBase64(tempFile);
         byte[] decodedBytes = Base64.getDecoder().decode(base64Encoded);
-        String decodedText = new String(decodedBytes);
+        String decodedText = new String(decodedBytes, StandardCharsets.UTF_8);
         assertEquals("Bonjour IA !", decodedText);
     }
 
@@ -63,12 +64,12 @@ class FileLoaderTest {
     @Test
     void testEncodeFileToBase64_UnicodeFile() throws IOException {
         File unicodeFile = tempDir.resolve("unicode.txt").toFile();
-        try (FileWriter writer = new FileWriter(unicodeFile)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(unicodeFile.toPath(), StandardCharsets.UTF_8)) {
             writer.write("salut c est moi choupi");
         }
 
         String base64Encoded = FileLoader.encodeFileToBase64(unicodeFile);
-        String decoded = new String(Base64.getDecoder().decode(base64Encoded));
+        String decoded = new String(Base64.getDecoder().decode(base64Encoded), StandardCharsets.UTF_8);
         assertEquals("salut c est moi choupi", decoded);
     }
 
@@ -76,9 +77,10 @@ class FileLoaderTest {
     @Test
     void testEncodeFileToBase64_LargeFile() throws IOException {
         File largeFile = tempDir.resolve("large.txt").toFile();
-        try (FileWriter writer = new FileWriter(largeFile)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(largeFile.toPath(), StandardCharsets.UTF_8)) {
             for (int i = 0; i < 10000; i++) {
-                writer.write("Ligne " + i + "\n");
+                writer.write("Ligne " + i);
+                writer.write(System.lineSeparator());
             }
         }
 
@@ -94,5 +96,4 @@ class FileLoaderTest {
         // Suggestion : on refactorisera la méthode pour accepter un InputStream de test
         assertTrue(true, "Méthode interactive : sera testée après refactorisation");
     }
-
 }
