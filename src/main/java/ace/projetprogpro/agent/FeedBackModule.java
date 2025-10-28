@@ -4,6 +4,7 @@ import ace.projetprogpro.model.Response;
 
 public class FeedBackModule {
 
-    public String analyzeResponse(Response r) { return ""; }
-
+    public String analyzeResponse(Response r) {
+        return "";
+    }
 }

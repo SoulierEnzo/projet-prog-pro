@@ -4,7 +4,11 @@ import java.util.List;
 
 public class EvaluationAgent {
 
-    public String evaluatePerformance(List<Object> responses) { return ""; }
-    public String generateScoreReport() { return ""; }
+    public String evaluatePerformance(List<Object> responses) {
+        return "";
+    }
 
+    public String generateScoreReport() {
+        return "";
+    }
 }

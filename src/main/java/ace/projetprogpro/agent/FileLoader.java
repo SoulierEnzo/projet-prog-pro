@@ -2,9 +2,11 @@ package ace.projetprogpro.agent;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Base64;
 import java.util.Scanner;
+import org.apache.commons.io.FilenameUtils;
 
 public class FileLoader {
     public static void main(String[] args) {
@@ -23,13 +25,13 @@ public class FileLoader {
 
     // Méthode pour récupérer 2 fichiers depuis l'utilisateur
     public static File[] getTwoFilesFromUser() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
         File[] files = new File[2];
 
         for (int i = 0; i < 2; i++) {
             System.out.print("Entrez le chemin du fichier " + (i + 1) + " : ");
             String path = scanner.nextLine();
-            File file = new File(path);
+            File file = new File(FilenameUtils.getName(path));
 
             if (!file.exists() || !file.isFile()) {
                 System.out.println("Le fichier n'existe pas ou n'est pas valide !");

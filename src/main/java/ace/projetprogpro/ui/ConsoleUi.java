@@ -2,14 +2,14 @@ package ace.projetprogpro.ui;
 
 import ace.projetprogpro.agent.InterviewAgent;
 import ace.projetprogpro.model.Question;
-
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class ConsoleUi {
 
     private static InterviewAgent agent;
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
 
     public static void main(String[] args) {
 
@@ -27,11 +27,13 @@ public class ConsoleUi {
     }
 
     public void displayQuestion(Question q) {
-        System.out.println(q.getText());
+        System.out.println(q.text());
     }
+
     public String getUserResponse() {
         return scanner.next();
     }
+
     public void displayFeedback(String feedback) {
         System.out.println("\nvoici quelques conseils pour la reponse que vous avez donne :\n");
         System.out.println(feedback);
@@ -40,9 +42,6 @@ public class ConsoleUi {
     public boolean askToContinue() {
         System.out.println("voulez-vous une autre question ? (y/n)");
         String reponse = scanner.nextLine();
-        return  reponse.equals("y");
+        return reponse.equals("y");
     }
-
-
-
 }

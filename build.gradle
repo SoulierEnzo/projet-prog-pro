@@ -5,7 +5,7 @@ plugins {
 	id 'checkstyle'
 	id 'jacoco'
 	id 'com.github.spotbugs' version '6.0.18'
-	id 'com.github.sherter.google-java-format' version '0.9'
+	id 'com.diffplug.spotless' version '6.25.0'
 }
 
 group = 'ace'
@@ -31,12 +31,17 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'commons-io:commons-io:2.16.1'
 
 	// Lombok optionnel pour réduire le boilerplate
 	compileOnly 'org.projectlombok:lombok:1.18.30'
 	annotationProcessor 'org.projectlombok:lombok:1.18.30'
 	testCompileOnly 'org.projectlombok:lombok:1.18.30'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+	// LangChain4J
+	implementation 'dev.langchain4j:langchain4j:1.7.1'
+	implementation 'dev.langchain4j:langchain4j-ollama:1.7.1'
 }
 
 checkstyle {
@@ -47,9 +52,12 @@ spotbugs {
 	toolVersion = '4.9.7'
 }
 
-googleJavaFormat {
-	toolVersion = "1.17.0"
-	source = fileTree('src/main/java') + fileTree('src/test/java')
+spotless {
+	java {
+		eclipse().configFile('spotless-eclipse.xml')
+		target 'src/main/java/**/*.java', 'src/test/java/**/*.java'
+		targetExclude '**/build/**'
+	}
 }
 
 tasks.withType(com.github.spotbugs.snom.SpotBugsTask).configureEach {

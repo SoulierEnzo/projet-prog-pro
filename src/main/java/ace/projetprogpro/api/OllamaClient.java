@@ -6,5 +6,4 @@ public class OllamaClient {
         // TODO : Appel HTTP ou SDK Ollama avec prompt donne
         return "Réponse simulée pour le moment";
     }
-
 }

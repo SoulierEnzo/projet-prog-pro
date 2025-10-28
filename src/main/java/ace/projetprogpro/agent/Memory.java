@@ -1,16 +1,22 @@
 package ace.projetprogpro.agent;
 
 import ace.projetprogpro.model.Response;
-
+import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 public class Memory {
 
+    @Getter
+    @Setter
     private String cv;
+
+    @Getter
+    @Setter
     private String jobOffer;
 
     private List<Response> responses;
-
 
     public String getContext() {
         StringBuilder context;
@@ -26,27 +32,11 @@ public class Memory {
         return context.toString();
     }
 
-    public String getCv() {
-        return cv;
-    }
-
-    public void setCv(String cv) {
-        this.cv = cv;
-    }
-
-    public String getJobOffer() {
-        return jobOffer;
-    }
-
-    public void setJobOffer(String jobOffer) {
-        this.jobOffer = jobOffer;
-    }
-
     public List<Response> getResponses() {
-        return responses;
+        return new ArrayList<>(responses);
     }
 
     public void setResponses(List<Response> responses) {
-        this.responses = responses;
+        this.responses = new ArrayList<>(responses);
     }
 }
