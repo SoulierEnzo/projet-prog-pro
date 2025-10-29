@@ -31,7 +31,7 @@ public class InterviewAgent {
         consoleUi.println("Sélectionnez 2 fichiers : (1) votre CV, (2) l'offre d'emploi");
         try {
             File[] files = FileLoader.getTwoFilesFromUser();
-            String cvText = FileLoader.extractText(files[0]);     // voir méthode ci-dessous
+            String cvText = FileLoader.extractText(files[0]); // voir méthode ci-dessous
             String offerText = FileLoader.extractText(files[1]);
             memory.setCv(cvText);
             memory.setJobOffer(offerText);

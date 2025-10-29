@@ -11,7 +11,7 @@ public final class OllamaClient {
 
     public OllamaClient(String baseUrl, String modelName, double temperature) {
         this.model = OllamaChatModel.builder().baseUrl(baseUrl).modelName(modelName).temperature(temperature)
-                .timeout(Duration.ofSeconds(300)).build();
+                .timeout(Duration.ofSeconds(300000)).build();
     }
 
     /**
@@ -26,7 +26,7 @@ public final class OllamaClient {
         double temperature = Double.parseDouble(
                 System.getProperty("ollama.temperature", System.getenv().getOrDefault("OLLAMA_TEMPERATURE", "0.3")));
         this.model = OllamaChatModel.builder().baseUrl(baseUrl).modelName(modelName).temperature(temperature)
-                .timeout(Duration.ofSeconds(300)).build();
+                .timeout(Duration.ofSeconds(300000)).build();
     }
 
     public String askModel(String prompt) {
