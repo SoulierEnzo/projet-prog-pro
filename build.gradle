@@ -29,27 +29,51 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web' // pour REST
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	implementation 'commons-io:commons-io:2.16.1'
+	compileOnly("com.github.spotbugs:spotbugs-annotations:4.9.8")
+	testCompileOnly("com.github.spotbugs:spotbugs-annotations:4.9.8")
+	spotbugs("com.github.spotbugs:spotbugs-annotations:4.9.8")
+	spotbugs("com.github.spotbugs:spotbugs:4.9.8")
+	implementation 'org.apache.pdfbox:pdfbox:3.0.2'
 
-	// Lombok optionnel pour réduire le boilerplate
+	// Lombok pour réduire le boilerplate
 	compileOnly 'org.projectlombok:lombok:1.18.30'
 	annotationProcessor 'org.projectlombok:lombok:1.18.30'
 	testCompileOnly 'org.projectlombok:lombok:1.18.30'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
 
 	// LangChain4J
-	implementation 'dev.langchain4j:langchain4j:1.7.1'
-	implementation 'dev.langchain4j:langchain4j-ollama:1.7.1'
+	implementation 'dev.langchain4j:langchain4j:1.8.0'
+	implementation 'dev.langchain4j:langchain4j-ollama:1.8.0'
+
+	// Test
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mockito:mockito-core:5.14.2'
+	testImplementation 'org.mockito:mockito-junit-jupiter:5.14.2'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
+
+configurations.matching { it.name.toLowerCase().contains("spotbugs") }.all {
+	resolutionStrategy.force(
+			"com.github.spotbugs:spotbugs:4.9.8",
+			"com.github.spotbugs:spotbugs-annotations:4.9.8"
+	)
+	resolutionStrategy.eachDependency {
+		if (requested.group == "com.github.spotbugs" && requested.name == "spotbugs") {
+			useVersion("4.9.8")
+		}
+		if (requested.group == "com.github.spotbugs" && requested.name == "spotbugs-annotations") {
+			useVersion("4.9.8")
+		}
+	}
+}
+
 
 checkstyle {
 	toolVersion = "10.18.1"
 }
 
 spotbugs {
-	toolVersion = '4.9.7'
+	toolVersion = "4.9.8"
 }
 
 spotless {

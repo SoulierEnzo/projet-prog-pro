@@ -6,72 +6,72 @@ import ace.projetprogpro.model.Response;
 import ace.projetprogpro.ui.ConsoleUi;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class InterviewAgent {
 
-    private static final String ERREUR_RECUPERATION_FICHIER = "probleme de recuperation des fichiers, veuillez reessayer";
+    private static final String ERR_FICHIERS = "Problème de récupération des fichiers, veuillez réessayer.";
 
-    private Memory memory;
+    private final Memory memory = new Memory();
+    private final OllamaClient ollama;
+    private final FeedBackModule feedbackModule;
+    private final EvaluationAgent evaluationAgent;
 
-    private OllamaClient ollamaClient;
+    public InterviewAgent(OllamaClient ollama) {
+        this.ollama = ollama;
+        this.feedbackModule = new FeedBackModule(ollama);
+        this.evaluationAgent = new EvaluationAgent(ollama);
+    }
 
-    private ConsoleUi consoleUi;
+    public InterviewAgent() {
+        this(new OllamaClient());
+    }
 
-    private boolean feedback;
-
-    private FeedBackModule feedBackModule;
-
-    public void startInterview() {
-
-        this.memory = new Memory();
-        this.memory.setResponses(new ArrayList<>());
-        this.ollamaClient = new OllamaClient();
-        this.consoleUi = new ConsoleUi();
-        this.feedBackModule = new FeedBackModule();
-
-        feedback = consoleUi.askForFeedBack();
-
-        // recuperation des files de cv et de jobOffer
-        File[] files = FileLoader.getTwoFilesFromUser();
-
+    public void run(ConsoleUi consoleUi) {
+        consoleUi.printBanner();
+        consoleUi.println("Sélectionnez 2 fichiers : (1) votre CV, (2) l'offre d'emploi");
         try {
-            memory.setCv(FileLoader.encodeFileToBase64(files[0]));
-            memory.setJobOffer(FileLoader.encodeFileToBase64(files[1]));
+            File[] files = FileLoader.getTwoFilesFromUser();
+            String cvText = FileLoader.extractText(files[0]);     // voir méthode ci-dessous
+            String offerText = FileLoader.extractText(files[1]);
+            memory.setCv(cvText);
+            memory.setJobOffer(offerText);
         } catch (IOException e) {
-            System.out.println(ERREUR_RECUPERATION_FICHIER);
+            consoleUi.error(ERR_FICHIERS + " " + e.getMessage());
+            return;
         }
+
+        boolean wantsFeedback = consoleUi.askFeedbackPreference();
+
+        boolean keepGoing = true;
+        while (keepGoing) {
+            Question q = generateNextQuestion();
+            consoleUi.displayQuestion(q);
+            String userAnswer = consoleUi.getUserResponse();
+
+            Response r = new Response();
+            r.setQuestion(q);
+            r.setAnswer(userAnswer);
+            memory.addResponse(r);
+
+            if (wantsFeedback) {
+                String fb = feedbackModule.analyzeResponse(r);
+                consoleUi.displayFeedback(fb);
+            }
+
+            keepGoing = consoleUi.askToContinue();
+        }
+
+        String finalReport = evaluationAgent.generateScoreReport(memory.getResponses(), memory.getCv(),
+                memory.getJobOffer());
+        consoleUi.displayFinalReport(finalReport);
+        consoleUi.println("Entretien terminé. Merci !");
     }
 
-    public Question generateQuestion() {
-        // Préparer le prompt à envoyer à Ollama
-        String prompt = "Tu es un recruteur dans l'entreprise qui a proposer l'offre d'emploi que je vais te donner ci-dessous."
-                + "\n Je veux que tu pose une question en rapport avec cette offre d'emploi ou bien en rapport avec le cv du candidat."
-                + "\n Ta question ne doit pas être dans le même contexte qu'une dans la liste des questions fournis plus bas.\n"
-                + memory.getContext();
-
-        // Appeler le serveur Ollama via ton service
-        String questionText = this.ollamaClient.askModel(prompt);
-
-        return (new Question(questionText));
-    }
-
-    public void processResponse() {
-
-        Question question = generateQuestion();
-
-        Response response = new Response();
-        response.setQuestion(question);
-
-        consoleUi.displayQuestion(question);
-
-        String textReponse = consoleUi.getUserResponse();
-
-        response.setAnswer(textReponse);
-
-        if (feedback) {
-            String textFeedback = feedBackModule.analyzeResponse(response);
-            consoleUi.displayFeedback(textFeedback);
-        }
+    private Question generateNextQuestion() {
+        String prompt = "Tu joues le rôle d'un recruteur. En te basant sur le CV et l'offre d'emploi fournis, "
+                + "pose **une seule** question pertinente pour un entretien, en français.\n"
+                + memory.buildConversationContext();
+        String q = ollama.askModel(prompt);
+        return new Question(q.trim());
     }
 }
