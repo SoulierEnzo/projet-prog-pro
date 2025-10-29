@@ -7,41 +7,58 @@ import java.util.Scanner;
 
 public class ConsoleUi {
 
-    private static InterviewAgent agent;
-
     private static final Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
 
     public static void main(String[] args) {
-
-        agent = new InterviewAgent();
-
-        System.out.println("=== Simulateur d'entretien avec IA ===");
-
-        agent.startInterview();
+        InterviewAgent agent = new InterviewAgent();
+        ConsoleUi ui = new ConsoleUi();
+        agent.run(ui);
     }
 
-    public boolean askForFeedBack() {
-        System.out.println("souhaitez-vous un feedback apres chaque reponse ? (y/n)");
-        String reponse = scanner.nextLine();
-        return reponse.equals("y");
+    // --------------- helpers ---------------
+    public void printBanner() {
+        println("=========================");
+        println("  Simulateur d'entretien  ");
+        println("=========================\n");
+    }
+
+    public boolean askFeedbackPreference() {
+        println("Souhaitez-vous un feedback après chaque réponse ? (y/n)");
+        String rep = scanner.nextLine().trim().toLowerCase();
+        return rep.startsWith("y");
     }
 
     public void displayQuestion(Question q) {
-        System.out.println(q.text());
+        println("\nQuestion: " + q.text());
+        print("> Votre réponse : ");
     }
 
     public String getUserResponse() {
-        return scanner.next();
+        return scanner.nextLine();
     }
 
     public void displayFeedback(String feedback) {
-        System.out.println("\nvoici quelques conseils pour la reponse que vous avez donne :\n");
-        System.out.println(feedback);
+        println("\n— Conseils sur votre réponse —\n" + feedback + "\n");
     }
 
     public boolean askToContinue() {
-        System.out.println("voulez-vous une autre question ? (y/n)");
-        String reponse = scanner.nextLine();
-        return reponse.equals("y");
+        println("Voulez-vous une autre question ? (y/n)");
+        String rep = scanner.nextLine().trim().toLowerCase();
+        return rep.startsWith("y");
+    }
+
+    public void displayFinalReport(String report) {
+        println("\n===== Bilan final =====\n" + report + "\n=======================\n");
+    }
+
+    // I/O simples
+    public void println(String s) {
+        System.out.println(s);
+    }
+    public void print(String s) {
+        System.out.print(s);
+    }
+    public void error(String s) {
+        System.err.println(s);
     }
 }
