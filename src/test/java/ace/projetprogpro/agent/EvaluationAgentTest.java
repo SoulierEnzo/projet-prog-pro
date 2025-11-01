@@ -8,8 +8,17 @@ import ace.projetprogpro.model.Response;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Classe de test JUnit pour {@link EvaluationAgent}.
+ *
+ * Teste le comportement de l'évaluation des performances du candidat.
+ */
 class EvaluationAgentTest {
 
+    /**
+     * Teste que la méthode {@link EvaluationAgent#evaluatePerformance(List, String, String)}
+     * renvoie une chaîne de type JSON contenant les clés "score" et "recommandations".
+     */
     @Test
     void evaluatePerformance_returnsJsonLike() {
         OllamaClient mock = mock(OllamaClient.class);
