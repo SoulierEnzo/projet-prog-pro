@@ -121,7 +121,7 @@ cd projetprogpro
 ```
 ### 3. Lancer l’application
 
-Lancer l'exécutable :
+Lancer l'exécutable qui se trouve dans le dossier application :
 - **lancement_windows.bat** pour les appareils **Windows**
 - **lancement_linux.sh** pour les appareils **Linux**
 

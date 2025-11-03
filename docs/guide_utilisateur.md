@@ -7,7 +7,7 @@ L’objectif est d’aider les utilisateurs à s’entraîner, gagner en confian
 ### ⚙️ Fonctionnement
 
 1) Lancement du simulateur  
-L’utilisateur démarre l’application via l'exécutable :  
+L’utilisateur démarre l’application via l'exécutable qui se trouve dans le dossier application :  
    - **lancement_windows.bat** pour les appareils **Windows**  
    - **lancement_linux.sh** pour les appareils **Linux**
 2) Sélection des fichiers  
