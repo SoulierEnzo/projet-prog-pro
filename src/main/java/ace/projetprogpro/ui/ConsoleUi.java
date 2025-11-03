@@ -21,8 +21,6 @@ public class ConsoleUi {
      *            arguments de la ligne de commande (non utilisés)
      */
     public static void main(String[] args) {
-        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
-        System.setErr(new PrintStream(System.err, true, StandardCharsets.UTF_8));
         InterviewAgent agent = new InterviewAgent();
         ConsoleUi ui = new ConsoleUi();
         agent.run(ui);
