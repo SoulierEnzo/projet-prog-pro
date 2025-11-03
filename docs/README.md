@@ -62,19 +62,45 @@ L’application fonctionne en console et utilise un modèle de langage via **Oll
 
 ```
 ace.projetprogpro/
-├─ agent/                  # Logique principale de l’entretien
-│  ├─ InterviewAgent.java
-│  ├─ EvaluationAgent.java
-│  ├─ FeedBackModule.java
-│  ├─ Memory.java
-│  ├─ FileLoader.java
-├─ api/                    # Clients et contrôleurs REST
-│  ├─ OllamaClient.java
-├─ model/                  # Classes métiers
-│  ├─ Question.java
-│  ├─ Response.java
-├─ ui/                     # Interface console
-│  ├─ ConsoleUi.java
+├─ agent/ # Logique principale de l’entretien
+│ ├─ InterviewAgent.java
+│ ├─ EvaluationAgent.java
+│ ├─ FeedBackModule.java
+│ ├─ FileLoader.java
+│ └─ Memory.java
+│
+├─ api/ # Client du modèle IA
+│ └─ OllamaClient.java
+│
+├─ model/ # Classes métiers
+│ ├─ Question.java
+│ └─ Response.java
+│
+├─ ui/ # Interface console
+│ └─ ConsoleUi.java
+│
+├─ test/ # Tests unitaires
+│ └─ agent/
+│ ├─ EvaluationAgentTest.java
+│ ├─ FeedBackModuleTest.java
+│ ├─ FileLoaderTest.java
+│ └─ InterviewAgentTest.java
+│
+├─ application/ # Scripts de lancement
+│ ├─ lancement_linux.sh
+│ └─ lancement_windows.bat
+│
+├─ docs/ # Documentation et diagrammes
+│ ├─ diagramme_cas-utilisation.png
+│ ├─ diagramme_classe.png
+│ ├─ guide_utilisateur.md
+│ ├─ suivi_projet.md
+│ └─ README.md
+│
+├─ build.gradle # Configuration Gradle
+├─ settings.gradle # Paramètres du projet
+├─ compose.yaml # Configuration de déploiement
+└─ ProjetProgProApplication.java
 ```
 
 ---
@@ -94,6 +120,12 @@ cd projetprogpro
 ./gradlew build
 ```
 ### 3. Lancer l’application
+
+Lancer l'exécutable :
+- **lancement_windows.bat** pour les appareils **Windows**
+- **lancement_linux.sh** pour les appareils **Linux**
+
+ou en lignes de commandes via la commande :
 ```
 ./gradlew bootRun
 ```
