@@ -12,6 +12,19 @@ L’application fonctionne en console et utilise un modèle de langage via **Oll
 - Calculer un **score global de performance** et présenter un **rapport final** d’évaluation.
 ---
 
+## 👤 Equipe :
+| Prénom NOM    | Role                      |
+|---------------|---------------------------|
+| Antoine LALA  | Chef de projet            |
+| Clément SAURY | Responsable Documentation |
+| Enzo SOULIER  | Développeur               |
+---
+
+## 📊 Suivi du projet
+
+[Document avec la gestion du projet](suivi_projet.md)
+
+---
 ## ⚙️ Fonctionnalités
 
 1. **Démarrage interactif**
@@ -57,13 +70,11 @@ ace.projetprogpro/
 │  ├─ FileLoader.java
 ├─ api/                    # Clients et contrôleurs REST
 │  ├─ OllamaClient.java
-│  ├─ TestController.java
 ├─ model/                  # Classes métiers
 │  ├─ Question.java
 │  ├─ Response.java
 ├─ ui/                     # Interface console
 │  ├─ ConsoleUi.java
-└─ ProjetProgProApplication.java
 ```
 
 ---
@@ -86,12 +97,11 @@ cd projetprogpro
 ```
 ./gradlew bootRun
 ```
-### 4. Utilisation
-Fournir le CV et l’offre d’emploi demandés.
+## 🧠 Guide Utilisateur
 
-Répondre aux questions générées.
+[Guide d'utilisation.md](guide_utilisateur.md)
 
-Consulter le feedback et le rapport final affichés dans la console.
+---
 ## 🧪 Tests
 
 
@@ -121,10 +131,12 @@ Base URL       OLLAMA_BASE_URL	          ollama.base-url	http://localhost:11434
 Modèle         OLLAMA_MODEL	          ollama.model	        llama3.1:8b
 Température    OLLAMA_TEMPERATURE	  ollama.temperature	0.3
 ```
+## 🧱 Diagrammes UML
 
-## 👤 Equipe :
-| Prénom NOM    | Role                      |
-|---------------|---------------------------|
-| Antoine LALA  | Chef de projet            |
-| Clément SAURY | Responsable Documentation |
-| Enzo SOULIER  | Développeur               |
+### Diagramme de classe :
+
+![diagramme_classe.png](diagramme_classe.png)
+
+### Diagramme de cas d'utilisation :
+
+![diagramme_cas-utilisation.png](diagramme_cas-utilisation.png)
