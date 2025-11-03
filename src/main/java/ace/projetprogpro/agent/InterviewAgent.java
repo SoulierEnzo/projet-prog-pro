@@ -9,9 +9,9 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Agent principal gérant le déroulement d'un entretien simulé.
- * Il interagit avec l'utilisateur, génère des questions à partir du CV et de l'offre d'emploi,
- * et peut fournir un feedback et un rapport d'évaluation final.
+ * Agent principal gérant le déroulement d'un entretien simulé. Il interagit
+ * avec l'utilisateur, génère des questions à partir du CV et de l'offre
+ * d'emploi, et peut fournir un feedback et un rapport d'évaluation final.
  */
 public class InterviewAgent {
 
@@ -25,7 +25,8 @@ public class InterviewAgent {
     /**
      * Constructeur utilisant un client Ollama fourni.
      *
-     * @param ollama le client utilisé pour interagir avec le modèle d'IA
+     * @param ollama
+     *            le client utilisé pour interagir avec le modèle d'IA
      */
     public InterviewAgent(OllamaClient ollama) {
         this.ollama = ollama;
@@ -43,7 +44,8 @@ public class InterviewAgent {
     /**
      * Démarre l'entretien interactif dans la console.
      *
-     * @param consoleUi interface utilisateur console
+     * @param consoleUi
+     *            interface utilisateur console
      */
     public void run(ConsoleUi consoleUi) {
         consoleUi.printBanner();
@@ -80,24 +82,22 @@ public class InterviewAgent {
             keepGoing = consoleUi.askToContinue();
         }
 
-        String finalReport = evaluationAgent.generateScoreReport(
-                memory.getResponses(),
-                memory.getCv(),
-                memory.getJobOffer()
-        );
+        String finalReport = evaluationAgent.generateScoreReport(memory.getResponses(), memory.getCv(),
+                memory.getJobOffer());
         consoleUi.displayFinalReport(finalReport);
         consoleUi.println("Entretien terminé. Merci !");
     }
 
     /**
-     * Génère une nouvelle question d'entretien en se basant sur le contexte (CV, offre, historique).
+     * Génère une nouvelle question d'entretien en se basant sur le contexte (CV,
+     * offre, historique).
      *
      * @return une question à poser au candidat
      */
     private Question generateNextQuestion() {
         String prompt = "Tu joues le rôle d'un recruteur. En te basant sur le CV et l'offre d'emploi fournis, "
-                + "pose une seule question pertinente pour un entretien, en français.\n"
-                + memory.buildConversationContext();
+                + "pose uniquement une question pertinente pour un entretien, en français, "
+                + "sans explication ni texte avant ou après.\n" + memory.buildConversationContext();
         String q = ollama.askModel(prompt);
         return new Question(q.trim());
     }

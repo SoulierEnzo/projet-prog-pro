@@ -33,13 +33,13 @@ services:
         done
         for i in {1..5}; do
           ollama pull llama3.1:8b && break
-          echo "Retry $i/5 dans 5s..."
+          echo "Retry $$i/5 dans 5s..."
           sleep 5
         done
         echo "Modèle llama prêt."
         for i in {1..5}; do
           ollama pull qwen3:8b && break
-          echo "Retry $i/5 dans 5s..."
+          echo "Retry $$i/5 dans 5s..."
           sleep 5
         done
         echo "Modèle qwen prêt."

@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Représente la mémoire de l'entretien.
- * Contient le texte du CV, l'offre d'emploi, et les réponses du candidat.
+ * Représente la mémoire de l'entretien. Contient le texte du CV, l'offre
+ * d'emploi, et les réponses du candidat.
  */
 public class Memory {
 
@@ -24,15 +24,16 @@ public class Memory {
     /**
      * Ajoute une réponse à l'historique.
      *
-     * @param r la réponse à ajouter
+     * @param r
+     *            la réponse à ajouter
      */
     public void addResponse(Response r) {
         responses.add(r);
     }
 
     /**
-     * Retourne la liste des réponses enregistrées.
-     * Une nouvelle liste est renvoyée pour éviter toute modification externe.
+     * Retourne la liste des réponses enregistrées. Une nouvelle liste est renvoyée
+     * pour éviter toute modification externe.
      *
      * @return la liste des réponses
      */
@@ -43,8 +44,10 @@ public class Memory {
     /**
      * Coupe une chaîne si elle dépasse une certaine longueur.
      *
-     * @param s   la chaîne d'entrée
-     * @param max la longueur maximale autorisée
+     * @param s
+     *            la chaîne d'entrée
+     * @param max
+     *            la longueur maximale autorisée
      * @return la chaîne tronquée avec une indication si nécessaire
      */
     private static String clip(String s, int max) {
@@ -55,8 +58,8 @@ public class Memory {
     }
 
     /**
-     * Construit le contexte textuel de la conversation,
-     * incluant le CV, l'offre d'emploi et l'historique des questions/réponses.
+     * Construit le contexte textuel de la conversation, incluant le CV, l'offre
+     * d'emploi et l'historique des questions/réponses.
      *
      * @return le texte complet représentant le contexte de l'entretien
      */

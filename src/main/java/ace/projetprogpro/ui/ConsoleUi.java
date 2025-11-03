@@ -6,9 +6,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
- * Interface console pour l'utilisateur du simulateur d'entretien.
- * Cette classe gère l'affichage des questions, la saisie des réponses,
- * l'affichage du feedback et le rapport final.
+ * Interface console pour l'utilisateur du simulateur d'entretien. Cette classe
+ * gère l'affichage des questions, la saisie des réponses, l'affichage du
+ * feedback et le rapport final.
  */
 public class ConsoleUi {
 
@@ -17,7 +17,8 @@ public class ConsoleUi {
     /**
      * Point d'entrée principal pour lancer le simulateur depuis la console.
      *
-     * @param args arguments de la ligne de commande (non utilisés)
+     * @param args
+     *            arguments de la ligne de commande (non utilisés)
      */
     public static void main(String[] args) {
         InterviewAgent agent = new InterviewAgent();
@@ -35,7 +36,8 @@ public class ConsoleUi {
     }
 
     /**
-     * Demande à l'utilisateur s'il souhaite recevoir un feedback après chaque réponse.
+     * Demande à l'utilisateur s'il souhaite recevoir un feedback après chaque
+     * réponse.
      *
      * @return true si l'utilisateur souhaite recevoir le feedback, false sinon
      */
@@ -48,7 +50,8 @@ public class ConsoleUi {
     /**
      * Affiche une question à l'utilisateur et invite à saisir la réponse.
      *
-     * @param q la question à afficher
+     * @param q
+     *            la question à afficher
      */
     public void displayQuestion(Question q) {
         println("\nQuestion: " + q.text());
@@ -67,7 +70,8 @@ public class ConsoleUi {
     /**
      * Affiche le feedback généré par le simulateur pour une réponse donnée.
      *
-     * @param feedback le texte du feedback à afficher
+     * @param feedback
+     *            le texte du feedback à afficher
      */
     public void displayFeedback(String feedback) {
         println("\n— Conseils sur votre réponse —\n" + feedback + "\n");
@@ -87,7 +91,8 @@ public class ConsoleUi {
     /**
      * Affiche le rapport final de l'entretien.
      *
-     * @param report le texte du rapport final
+     * @param report
+     *            le texte du rapport final
      */
     public void displayFinalReport(String report) {
         println("\n===== Bilan final =====\n" + report + "\n=======================\n");
@@ -96,7 +101,8 @@ public class ConsoleUi {
     /**
      * Affiche une ligne dans la console.
      *
-     * @param s le texte à afficher
+     * @param s
+     *            le texte à afficher
      */
     public void println(String s) {
         System.out.println(s);
@@ -105,7 +111,8 @@ public class ConsoleUi {
     /**
      * Affiche du texte sans saut de ligne dans la console.
      *
-     * @param s le texte à afficher
+     * @param s
+     *            le texte à afficher
      */
     public void print(String s) {
         System.out.print(s);
@@ -114,7 +121,8 @@ public class ConsoleUi {
     /**
      * Affiche un message d'erreur dans la console.
      *
-     * @param s le texte du message d'erreur
+     * @param s
+     *            le texte du message d'erreur
      */
     public void error(String s) {
         System.err.println(s);

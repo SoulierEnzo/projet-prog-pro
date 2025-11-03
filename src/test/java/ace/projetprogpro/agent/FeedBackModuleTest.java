@@ -11,13 +11,14 @@ import org.junit.jupiter.api.Test;
 /**
  * Classe de test JUnit pour {@link FeedBackModule}.
  *
- * Vérifie que le module de feedback génère bien des conseils à partir d'une réponse donnée.
+ * Vérifie que le module de feedback génère bien des conseils à partir d'une
+ * réponse donnée.
  */
 class FeedBackModuleTest {
 
     /**
-     * Teste que la méthode {@link FeedBackModule#analyzeResponse(Response)}
-     * renvoie des axes d'amélioration attendus dans le feedback.
+     * Teste que la méthode {@link FeedBackModule#analyzeResponse(Response)} renvoie
+     * des axes d'amélioration attendus dans le feedback.
      */
     @Test
     void analyzeResponse_returnsAdvice() {

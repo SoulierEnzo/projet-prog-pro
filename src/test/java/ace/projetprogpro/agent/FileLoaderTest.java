@@ -16,8 +16,9 @@ import org.junit.jupiter.api.io.TempDir;
 /**
  * Classe de test JUnit pour {@link FileLoader}.
  *
- * Teste les différentes méthodes utilitaires de manipulation de fichiers,
- * en particulier {@link FileLoader#encodeFileToBase64(File)} et la gestion des fichiers temporaires.
+ * Teste les différentes méthodes utilitaires de manipulation de fichiers, en
+ * particulier {@link FileLoader#encodeFileToBase64(File)} et la gestion des
+ * fichiers temporaires.
  */
 class FileLoaderTest {
 
@@ -29,7 +30,8 @@ class FileLoaderTest {
     /**
      * Prépare un fichier temporaire avant chaque test.
      *
-     * @throws IOException si une erreur d'écriture se produit
+     * @throws IOException
+     *             si une erreur d'écriture se produit
      */
     @BeforeEach
     void setup() throws IOException {
@@ -42,7 +44,8 @@ class FileLoaderTest {
     /**
      * Test normal : vérifie qu'un fichier texte est correctement encodé en Base64.
      *
-     * @throws IOException si l'encodage échoue
+     * @throws IOException
+     *             si l'encodage échoue
      */
     @Test
     void testEncodeFileToBase64_NormalCase() throws IOException {
@@ -53,7 +56,8 @@ class FileLoaderTest {
     }
 
     /**
-     * Test d'un fichier inexistant : vérifie qu'une exception IOException est levée.
+     * Test d'un fichier inexistant : vérifie qu'une exception IOException est
+     * levée.
      */
     @Test
     void testEncodeFileToBase64_FileNotFound() {
@@ -62,7 +66,8 @@ class FileLoaderTest {
     }
 
     /**
-     * Test avec un répertoire au lieu d’un fichier : vérifie qu'une exception IOException est levée.
+     * Test avec un répertoire au lieu d’un fichier : vérifie qu'une exception
+     * IOException est levée.
      */
     @Test
     void testEncodeFileToBase64_WithDirectory() {
@@ -73,7 +78,8 @@ class FileLoaderTest {
     /**
      * Test d'un fichier vide : vérifie que l'encodage retourne une chaîne vide.
      *
-     * @throws IOException si l'encodage échoue
+     * @throws IOException
+     *             si l'encodage échoue
      */
     @Test
     void testEncodeFileToBase64_EmptyFile() throws IOException {
@@ -86,7 +92,8 @@ class FileLoaderTest {
     /**
      * Test d'un fichier contenant des caractères unicode et accents.
      *
-     * @throws IOException si l'encodage échoue
+     * @throws IOException
+     *             si l'encodage échoue
      */
     @Test
     void testEncodeFileToBase64_UnicodeFile() throws IOException {
@@ -101,9 +108,11 @@ class FileLoaderTest {
     }
 
     /**
-     * Test d'un fichier volumineux simulé pour vérifier la performance de l'encodage.
+     * Test d'un fichier volumineux simulé pour vérifier la performance de
+     * l'encodage.
      *
-     * @throws IOException si l'encodage échoue
+     * @throws IOException
+     *             si l'encodage échoue
      */
     @Test
     void testEncodeFileToBase64_LargeFile() throws IOException {
@@ -121,8 +130,9 @@ class FileLoaderTest {
     }
 
     /**
-     * Test de la méthode interactive {@link FileLoader#getTwoFilesFromUser()}.
-     * Ce test est indicatif et ne peut pas être exécuté automatiquement car il nécessite une entrée utilisateur.
+     * Test de la méthode interactive {@link FileLoader#getTwoFilesFromUser()}. Ce
+     * test est indicatif et ne peut pas être exécuté automatiquement car il
+     * nécessite une entrée utilisateur.
      */
     @Test
     void testGetTwoFilesFromUser_InvalidFile() {

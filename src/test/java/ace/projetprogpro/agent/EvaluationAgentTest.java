@@ -16,8 +16,9 @@ import org.junit.jupiter.api.Test;
 class EvaluationAgentTest {
 
     /**
-     * Teste que la méthode {@link EvaluationAgent#evaluatePerformance(List, String, String)}
-     * renvoie une chaîne de type JSON contenant les clés "score" et "recommandations".
+     * Teste que la méthode
+     * {@link EvaluationAgent#evaluatePerformance(List, String, String)} renvoie une
+     * chaîne de type JSON contenant les clés "score" et "recommandations".
      */
     @Test
     void evaluatePerformance_returnsJsonLike() {
