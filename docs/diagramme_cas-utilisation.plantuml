@@ -2,13 +2,13 @@
 actor Candidat
 actor Systeme as "Simulateur d'entretien"
 
-Candidat --> (Démarrer le simulateur)
-Candidat --> (Fournir CV et offre d'emploi)
-Candidat --> (Répondre à la question)
+Candidat -- (Démarrer le simulateur)
+Candidat -- (Fournir CV et offre d'emploi)
+Candidat -- (Répondre à la question)
 
-(Systeme) --> (Générer une question)
-(Systeme) --> (Fournir feedback sur la réponse)
-(Systeme) --> (Évaluer l’entretien)
+(Systeme) -- (Générer une question)
+(Systeme) -- (Fournir feedback sur la réponse)
+(Systeme) -- (Évaluer l’entretien)
 
 (Démarrer le simulateur) ..> (Générer une question) : include
 (Répondre à la question) ..> (Fournir feedback sur la réponse) : include

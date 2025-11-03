@@ -2,7 +2,6 @@
 
 ## 🧠 Description
 
-```
 **JavaInterviewAgentSimulator** est un simulateur d’entretien d’embauche intelligent développé en Java.  
 Il permet de **préparer des entretiens professionnels** en simulant un recruteur alimenté par un modèle d’IA.  
 L’application fonctionne en console et utilise un modèle de langage via **Ollama** (connecté grâce à LangChain4J).
@@ -11,12 +10,10 @@ L’application fonctionne en console et utilise un modèle de langage via **Oll
 - Générer des **questions d’entretien** à partir du CV et de l’offre d’emploi du candidat.
 - Analyser les **réponses du candidat** et fournir un **feedback personnalisé**.
 - Calculer un **score global de performance** et présenter un **rapport final** d’évaluation.
-```
 ---
 
 ## ⚙️ Fonctionnalités
 
-```
 1. **Démarrage interactif**
     - Affiche un bandeau de bienvenue.
     - Permet de choisir si le candidat souhaite un feedback après chaque réponse.
@@ -36,19 +33,16 @@ L’application fonctionne en console et utilise un modèle de langage via **Oll
 5. **Évaluation finale**
     - Calcul d’un score global.
     - Affichage des points forts, axes d’amélioration et recommandations.
-```
 ---
 
 ## 🏗️ Technologies utilisées
 
-```
-- **Java 17+**
+- **Java 21**
 - **Spring Boot** – API REST et configuration
 - **LangChain4J / Ollama** – Interaction avec le modèle IA
 - **JUnit 5 / Mockito** – Tests unitaires
 - **Apache PDFBox** – Lecture des fichiers PDF
 - **Gradle** – Gestion de projet et des dépendances
-```
 ---
 
 ## 🧩 Structure du projet
@@ -94,43 +88,40 @@ cd projetprogpro
 ./gradlew bootRun
 ```
 ### 4. Utilisation
-```
 Fournir le CV et l’offre d’emploi demandés.
 
 Répondre aux questions générées.
 
 Consulter le feedback et le rapport final affichés dans la console.
-```
 ## 🧪 Tests
 
-```
-Des tests unitaires garantissent la fiabilité du simulateur.
-Pour les exécuter :
 
+### Des tests unitaires garantissent la fiabilité du simulateur.
+### Pour les exécuter :
+
+```
 ./gradlew test
 
 ```
 ### Couverture des tests :
 
-```
-FileLoaderTest : encodage Base64, fichiers vides, unicode, erreurs.
+**FileLoaderTest** : encodage Base64, fichiers vides, unicode, erreurs.
 
-InterviewAgentTest : génération de questions via Ollama.
+**InterviewAgentTest** : génération de questions via Ollama.
 
-FeedBackModuleTest : analyse qualitative et suggestions.
+**FeedBackModuleTest** : analyse qualitative et suggestions.
 
-EvaluationAgentTest : évaluation finale et rapport JSON.
+**EvaluationAgentTest** : évaluation finale et rapport JSON.
 
-```
 ## ⚙️ Configuration du modèle Ollama
 
 ### Le client Ollama est configurable via variables d’environnement ou System Properties.
 
 ```
-Paramètre	Variable d’environnement	Propriété système	Valeur par défaut
-Base URL	OLLAMA_BASE_URL	ollama.base-url	http://localhost:11434
-Modèle	OLLAMA_MODEL	ollama.model	llama3.1:8b
-Température	OLLAMA_TEMPERATURE	ollama.temperature	0.3
+Paramètre   Variable d’environnement	Propriété système	Valeur par défaut
+Base URL    OLLAMA_BASE_URL	            ollama.base-url	    http://localhost:11434
+Modèle      OLLAMA_MODEL	            ollama.model	    llama3.1:8b
+Température	OLLAMA_TEMPERATURE	        ollama.temperature	0.3
 ```
 
 # Agent de simuation d'entretien d'embauche
@@ -141,10 +132,3 @@ Température	OLLAMA_TEMPERATURE	ollama.temperature	0.3
 | Antoine LALA  | Chef de projet            |
 | Clément SAURY | Responsable Documentation |
 | Enzo SOULIER  | Développeur               |
-
-## 📄 Licence
-
-```
-Ce projet est distribué sous la licence MIT.
-
-```
