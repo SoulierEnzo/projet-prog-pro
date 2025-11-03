@@ -1,9 +1,12 @@
 # 🧠 Simulateur d’entretien avec IA
 
 **Document de suivi de projet**
-**Auteur :** [Ton Nom]
-**Encadrant :** [Nom de l’enseignant]
+
+**Auteur :** Antoine LALA
+
 **Date :** Octobre 2025
+
+**Dernière mise a jour :** 01/11/2025
 
 ---
 
@@ -33,24 +36,24 @@ L’objectif final est d’obtenir une **application console fonctionnelle**, ex
 | 2     | Conception UML des agents principaux (InterviewAgent, EvaluationAgent, FeedbackModule, Memory, OllamaClient, Question, Response, ConsoleUI) | ✅ Terminé   | séance 1 |
 | 3     | Ajout du `FileLoader` dans le diagramme UML et intégration prévue pour gérer les fichiers utilisateurs                                      | ✅ Terminé   | séance 2 |
 | 4     | Implémentation des classes de base et des squelettes de méthodes                                                                            | ✅ Terminé   | séance 2 |
-| 5     | Développement du flux principal de simulation (Console → Agents → IA → Feedback)                                                            | 🕓 En cours | séance 3 |
-| 6     | Intégration de l’IA via OllamaClient (connexion locale)                                                                                     | 🕓 En cours | séance 3 |
-| 7     | Phase de test, analyse de couverture et vérification Checkstyle                                                                             | ⏳ À venir   | séance 4 |
-| 8     | Rapport final et soutenance                                                                                                                 | ⏳ À venir   | séance 4 |
+| 5     | Développement du flux principal de simulation (Console → Agents → IA → Feedback)                                                            | ✅ Terminé | séance 3 |
+| 6     | Intégration de l’IA via OllamaClient (connexion locale)                                                                                     | ✅ Terminé | séance 3 |
+| 7     | Phase de test, analyse de couverture et vérification Checkstyle                                                                             | ✅ Terminé   | séance 4 |
+| 8     | Rapport final et soutenance                                                                                                                 | ✅ Terminé   | séance 4 |
 
 ---
 
 ## 📊 Suivi d’avancement
 
-| Domaine                                         | Avancement | Commentaire                                          |
-| :---------------------------------------------- |:-----------|:-----------------------------------------------------|
-| Configuration du projet                         | 🟩 100%    | Gradle, plugins, et structure validés                |
-| Architecture UML                                | 🟩 100%    | Diagramme clair et validé avec ajout du `FileLoader` |
-| Implémentation des agents                       | 🟨 50%     | Classes en place, logique à compléter                |
-| Interaction IA (Ollama)                         | 🟥 0%      | Dépend de l’étape suivante                           |
-| Interface console                               | 🟨 30%     | Entrée utilisateur a testé, logique à enrichir       |
-| Tests et qualité (Jacoco, Spotbugs, Checkstyle) | 🟨 20%     | Configurés mais non exécutés sur code complet        |
-| Documentation & rapport                         | 🟩 80%     | Suivi de projet et diagrammes prêts                  |
+| Domaine                                         | Avancement | Commentaire                                     |
+| :---------------------------------------------- |:-----------|:------------------------------------------------|
+| Configuration du projet                         | 🟩 100%    | Gradle, plugins, et structure validés           |
+| Architecture UML                                | 🟩 100%    | Diagrammes terminés                             |
+| Implémentation des agents                       | 🟩 100%    | Classes en place, logique complété              |
+| Interaction IA (Ollama)                         | 🟩 100%    | Connexion à Ollama                              |
+| Interface console                               | 🟩 100%    | Entrée utilisateur terminé et logique complète  |
+| Tests et qualité (Jacoco, Spotbugs, Checkstyle) | 🟨 70%     | Spotbugs et checkstyle ok, completion des tests |
+| Documentation & rapport                         | 🟩 100%    | Suivi de projet et diagrammes prêts             |
 
 ---
 
@@ -62,9 +65,9 @@ séance :     1       2       3        4
 Initialisation [#####]                
 UML / Design   [#####]                   
 Implémentation        [######]
-IA / Ollama               [#--------]
-Tests / Qualité       [###----------]
-Rapport final                         [#--]
+IA / Ollama               [#########]
+Tests / Qualité       [###########--]
+Rapport final                         [###]
 -----------------------------------------------------------
 # : travail effectué
 - : reste à faire
@@ -74,10 +77,7 @@ Rapport final                         [#--]
 
 ## 🔍 Prochaines étapes
 
-1. Implémenter la logique des agents (InterviewAgent ↔ EvaluationAgent).
-2. Connecter OllamaClient à une IA locale (test avec modèle de test).
-3. Exécuter les tests automatiques et générer les rapports Jacoco.
-4. Finaliser la documentation technique et la démonstration.
+1. Completer les tests
 
 ---
 
@@ -91,5 +91,6 @@ Rapport final                         [#--]
 
 ---
 
-**Statut actuel du projet :** 🟡 *En développement intermédiaire*
-**Prochaine revue prévue :** fin de la séance 3
+**Statut actuel du projet :** 🟩 *Développement terminé tests poussé en cours*
+
+**Prochaine revue prévue :** NULL
