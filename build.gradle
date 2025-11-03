@@ -86,8 +86,19 @@ spotless {
 }
 
 tasks.named('jar') {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	exclude(
+			"META-INF/DEPENDENCIES",
+			"META-INF/LICENSE*", "META-INF/NOTICE*",
+			"META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA"
+	)
+
+	from {
+		configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+
 	manifest {
-		attributes 'Main-Class': 'ace.projetprogpro.ui.ConsoleUi'
+		attributes("Main-Class": "ace.projetprogpro.ui.ConsoleUi")
 	}
 }
 
