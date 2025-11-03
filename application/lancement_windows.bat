@@ -1,6 +1,6 @@
 @echo off
 cd ..
-
+chcp 65001 >nul
 echo === Lancement du Docker ===
 docker-compose up -d
 
