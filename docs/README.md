@@ -64,7 +64,6 @@ ace.projetprogpro/
 ├─ ui/                     # Interface console
 │  ├─ ConsoleUi.java
 └─ ProjetProgProApplication.java
-
 ```
 
 ---
@@ -101,7 +100,6 @@ Consulter le feedback et le rapport final affichés dans la console.
 
 ```
 ./gradlew test
-
 ```
 ### Couverture des tests :
 
@@ -118,13 +116,11 @@ Consulter le feedback et le rapport final affichés dans la console.
 ### Le client Ollama est configurable via variables d’environnement ou System Properties.
 
 ```
-Paramètre   Variable d’environnement	Propriété système	Valeur par défaut
-Base URL    OLLAMA_BASE_URL	            ollama.base-url	    http://localhost:11434
-Modèle      OLLAMA_MODEL	            ollama.model	    llama3.1:8b
-Température	OLLAMA_TEMPERATURE	        ollama.temperature	0.3
+Paramètre      Variable d’environnement	  Propriété système	Valeur par défaut
+Base URL       OLLAMA_BASE_URL	          ollama.base-url	http://localhost:11434
+Modèle         OLLAMA_MODEL	          ollama.model	        llama3.1:8b
+Température    OLLAMA_TEMPERATURE	  ollama.temperature	0.3
 ```
-
-# Agent de simuation d'entretien d'embauche
 
 ## 👤 Equipe :
 | Prénom NOM    | Role                      |
